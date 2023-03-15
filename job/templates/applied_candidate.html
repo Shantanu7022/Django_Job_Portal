@@ -1,0 +1,54 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
+
+<h2 style="padding-left: 42%;">Applied Candidate List</h2>
+<hr>
+<div class="container">
+<table class="table table-hover" id="example">
+    <thead>
+        <tr style="background-color: rgb(45, 1, 8); color:aliceblue">
+            <th>Serial No.</th>
+            <th>Student Name</th>
+            <th>Contact No.</th>
+            <th>Email-id</th>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Apply Date</th>
+            <th>Resume</th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in data %}
+        {% if request.user.id == i.job.recruiter.user.id %}
+        <tr style="background-color: rgb(251, 251, 162);">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+            <td>{{i.student.mobile}}</td>
+            <td>{{i.student.user.username}}</td>
+            <td>{{i.job.tittle}}</td>
+            <td>{{i.job.recruiter.company}}</td>
+            <td>{{i.applydate}}</td>
+            <td><a href="{{i.resume.url}}" target="_blank">View Resume</a></td>
+            
+        </tr>
+
+        {% endif %}
+        {% endfor%}
+    </tbody>
+
+</table>
+</div>
+{% include 'footer.html' %}
+
+{% endblock %}

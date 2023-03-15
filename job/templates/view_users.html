@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigation.html' %}
+<h2 style="padding-left: 40%;">Student Users</h2>
+<hr>
+<div class="container">
+<table class="table table-hover" id="example">
+    <thead>
+        <tr style="background-color: rgb(73, 2, 96); color:aliceblue">
+            <th>Serial No.</th>
+            <th>Full Name</th>
+            <th>Email-id</th>
+            <th>Contact No.</th>
+            <th>Gender</th>
+            <th>Image</th>
+            <th>action</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in data %}
+        <tr style="background-color: rgb(223, 241, 238);">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+            <td>{{i.user.username}}</td>
+            <td>{{i.mobile}}</td>
+            <td>{{i.gender}}</td>
+            <td><img src = "{{i.image.url}}" style="width: 70px; height: 70px; border-radius:50%"></td>
+            <td><a href="{% url 'delete_user' i.user.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a></td>
+        </tr>
+        {% endfor%}
+    </tbody>
+
+</table>
+</div>
+{% include 'footer.html' %}
+
+{% endblock %}

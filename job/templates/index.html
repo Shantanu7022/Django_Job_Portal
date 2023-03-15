@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<div class="index">
+    <img src="{% static 'images/indexmain.png' %}" alt="No image" width="100%">   
+</div>
+
+{% include 'footer.html' %}
+
+{% endblock %}
