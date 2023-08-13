@@ -1,0 +1,33 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<form class="container mt-5 shadow-lg py-4 mb-2" method="post">
+
+    {% csrf_token %}
+    <h2>Admin Login</h2>
+    <label><b>UserName</b></label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter UserName"><br>
+
+    <label><b>Password</b></label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+
+    <input type="submit" value="Login" class="btn btn-primary" style="margin-top:2%; color:rgb(255, 255, 255); background-color:rgb(2, 2, 88); height:50px; width:160px; font-size:20px">
+
+</form>
+<br>
+{% if error == "no" %}
+<script>
+    alert("Login Successful");
+    window.location = ('{% url "admin_home" %}')
+
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert("Invalid Login Credential, Try again.....");
+</script>
+{% endif %}
+{% endblock %}

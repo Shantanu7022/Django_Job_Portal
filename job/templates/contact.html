@@ -1,0 +1,98 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+
+{% block body %}
+
+{% include 'navigation.html' %}
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+<style>
+    .mydiv:hover{
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);  
+    }
+</style>
+
+<h2 style="padding-left: 44%;">Contact Us</h2>
+<hr>
+<div class="text-center">
+    <div class="index">
+        <img src="{% static 'images/contactmap.png' %}" alt="No image" width="90%" height="55%">   
+    </div>
+    </div>
+    <br>
+
+
+<div class="container mt-4">
+    <br>
+    <div class="row">
+        <div class="col-sm-3 mydiv">
+            <h4 class="text-center"><i class="fa fa-envelope mr-3"></i>Email</h4>
+            <p class="text-center">shantanugayen@jobportal.com</p>
+
+        </div>
+
+        <div class="col-sm-3 mydiv">
+            <h4 class="text-center"><i class="fa fa-phone-square mr-3"></i>Contact No</h4>
+            <p class="text-center">+91 9874563210 / 91+ 7412589630</p>
+
+        </div>
+
+        <div class="col-sm-3 mydiv">
+            <h4 class="text-center"><i class="fa fa-map-marker mr-3"></i>Address</h4>
+            <p class="text-center">Salt Lake Sector V, Bidhannagar, Kolkata, West Bengal 700091</p>
+
+        </div>
+        <div class="col-sm-3 mydiv">
+            <h4 class="text-center"><i class="fa fa-clock-o mr-3"></i>Office Timing</h4>
+            <p class="text-center">10:30 A.M to 06:30 P.M</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<form class="container mt-5 shadow-lg py-4 mb-2" method="post">
+
+{% csrf_token %}
+<h2>Get In Touch</h2>
+
+<div class="form-row">
+   <div class="form-group col-md-6">
+       <label><b>First Name</b></label>
+       <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+
+   </div>
+
+   <div class="form-group col-md-6">
+       <label><b>Last Name</b></label>
+       <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+
+   </div>
+
+</div>
+<div class="form-row">
+    <div class="form-group col-md-12">
+        <label><b>Email-id</b></label>
+        <input type="email" class="form-control" name="fname" placeholder="Enter Email-id" required>
+ 
+    </div>
+ 
+ </div>
+ <div class="form-row">
+    <div class="form-group col-md-12">
+        <label><b>Your Queries</b></label>
+        <textarea class="form-control" name="description" placeholder="Write down your queries......" required></textarea>
+ 
+    </div>
+ 
+ </div>
+ <input type="submit" value="Send Message" class="btn btn-primary mt-3" style="margin-top:2%; color:rgb(255, 255, 255); background-color:rgb(2, 2, 88); height:50px; width:160px; font-size:20px">
+</form>
+<br><br>
+
+{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+
+<form class="container mt-5" name="signup" method="post" enctype="multipart/form-data">
+ {% csrf_token %}
+ <h2>Your Profile</h2>
+
+ <div class="form-row">
+    
+    <div class="form-group col-md-6">
+        <label><b>First Name</b></label>
+        <input type="text" class="form-control" name="fname" value="{{recruiter.user.first_name}}">
+
+    </div>
+
+    <div class="form-group col-md-6">
+        <label><b>Last Name</b></label>
+        <input type="text" class="form-control" name="lname" value="{{recruiter.user.last_name}}" required>
+
+    </div>
+
+ </div>
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+        <label><b>Contact Number</b></label>
+        <input type="text" class="form-control" name="contact" value="{{recruiter.mobile}}" required>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label><b>Company Name</b></label>
+        <input type="text" class="form-control" name="company" value="{{recruiter.company}}" readonly required>
+    </div>
+
+ </div>
+
+ <div class="form-row">
+    <div class="form-group col-md-12">
+        <label><b>Email Address</b></label>
+        <input type="email" class="form-control" name="email" value="{{recruiter.user.username}}" readonly required required>
+    </div>
+
+ </div>
+
+
+    <div class="form-group col-md-12">
+        <label><b>Profile Picture</b></label>
+        <input type="file" class="form-control" name="image">
+
+    </div>
+
+ </div>
+
+ <div class="mt-2 mb-3 text-center">
+    <img src="{{recruiter.image.url}}" width="150px" height="160px"> 
+
+   </div>
+
+ 
+ 
+   <input type="submit" value="Update Profile" style="margin-top:2%; margin-left: 28%; color:rgb(255, 255, 255); background-color:rgb(2, 2, 88); height:60px; width:500px; font-size:25px; border-radius:50px">
+   </form>
+
+   
+               
+
+{% include 'footer.html' %}
+{% if error == "no" %}
+<script>
+    alert("Profile Updated Successfully.");
+    window.location = ('{% url "recruiter_dashboard" %}')
+
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert("Somthing Went Wrong, Try again.....");
+</script>
+{% endif %}
+{% endblock %}

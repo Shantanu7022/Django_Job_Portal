@@ -1,0 +1,70 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+
+<h2 style="padding-left: 42%;">Job Details</h2>
+<hr>
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <img src="{{job.image.url}}" style="width: 300px; height:200px">
+
+    </div>
+
+    <div class="col-md-6 mt-3">
+        <h3 style="color: rgb(12, 2, 201);">{{job.tittle}}</h3>
+        <p>
+            <b><i class="fa fa-company mr-1 mt-3"></i>{{job.recruiter.company}} <em><a href="{%  url 'user_latestjobs' %}">(View All Jobs)</a></p></em></b>
+        </p>
+        <a href="#" class="mr-5"><i class="fa fa-map-marker mr-2"></i>{{job.location}}</a>
+        <a href="#"><i class="fa fa-calendar mr-2"></i>{{job.creationdate}}</a>
+        <br>
+        <strong><i class="fa fa-money mr-2 mt-3"></i><i class="fa fa-inr mr-1 mt-3"></i>{{job.salary}}</strong>
+
+    </div>
+
+
+</div>
+
+
+
+
+<div class="row mt-3">
+    <div class="col-md-3">
+        <h4>Application Start Date</h4>
+        <p>{{job.start_date}}</p>
+    </div>
+    <div class="col-md-3">
+        <h4>Application End Date</h4>
+        <p>{{job.end_date}}</p>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Required Experience</h4>
+        <p>{{job.experience}}</p>
+    </div>
+
+    <div class="col-md-3">
+        <h4>Requied Skills</h4>
+        <p>{{job.skills}}</p>
+    </div>
+    <div class="col-md-12 mt-5">
+        <h4>Job Describtion</h4>
+        <p>{{job.description}}</p>
+    </div>     
+</div>
+</div>
+
+<div class="text-center">
+    <div class="mt-5">
+        <a href="{% url 'applyforjob' job.id %}" class="btn btn-success" style="width:250px; height:50px; border-radius:50px; font-weight:bold">Apply Now</a>
+    </div>
+</div>
+
+
+{% include 'footer.html' %}
+
+{% endblock %}

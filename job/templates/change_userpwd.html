@@ -1,0 +1,61 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+<script>
+    function checkpass()
+    {
+        if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value)
+        {
+            alert('New Password & Confirm Password does not match');
+            document.changepassword.confirmpassword.focus();
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+<h2 style="padding-left: 36%;"> Change User Password</h2>
+<hr>
+<form class="container mt-5" method="post" name="changepassword" onsubmit="return checkpass()">
+
+    {% csrf_token %}
+    
+    <label><b>Current Password</b></label>
+    <input type="password" class="form-control" name="currentpassword" required="true">
+
+    <label><b>New Password</b></label>
+    <input type="password" class="form-control" name="newpassword" required="true">
+
+    <label><b>Confirm New Password</b></label>
+    <input type="password" class="form-control" name="confirmpassword" required="true">
+     
+
+    <input type="submit" value="Submit" class="btn btn-primary" style="margin-top:2%; color:rgb(255, 255, 255); background-color:rgb(2, 2, 88); height:50px; width:160px; font-size:20px">
+
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Password Changed Successfully");
+    window.location = ('{% url "Logout" %}')
+
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert("Somthing went wrong, Try Again....");
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+    alert("Your Current Password is Wrong, Try Again....");
+</script>
+{% endif %}
+{% include 'footer.html' %}
+
+{% endblock %}

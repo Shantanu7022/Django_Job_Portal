@@ -1,0 +1,59 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigation.html' %}
+
+<form class="container mt-5" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Change Company Logo</h2>
+   
+    <div class="form-row">
+       <div class="form-group col-md-12">
+           <label><b>Job Title</b></label>
+           <input type="text" class="form-control" readonly name="jobtitle"value="{{job.tittle}}">
+   
+       </div>
+   
+    </div>
+   
+    
+   
+    <div class="form-row">
+    
+        <div class="form-group col-md-12">
+            <img src="{{job.image.url}}" alt="" width="120" height="70">
+        </div>
+    
+     </div>
+
+ <div class="form-row">
+        
+        <div class="form-group col-md-12">
+            <label><b>Company Logo</b></label>
+            <input type="file" class="form-control" name="logo" required>
+    
+        </div>
+    </div>    
+    
+    
+    
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary mt-3 mb-5" style="margin-top:2%; color:rgb(255, 255, 255); background-color:rgb(2, 2, 88); height:50px; width:160px; font-size:20px">
+   </form>
+   
+   {% include 'footer.html' %}
+   {% if error == "no" %}
+   <script>
+       alert("Company Logo has been Updated successfully");
+       window.location = ('{% url "change_companylogo" job.id %}')
+   
+   </script>
+   {% endif %}
+   {% if error == "yes" %}
+   <script>
+       alert("Somthing Went Wrong, Try again.....");
+   </script>
+   {% endif %}
+
+{% endblock %}
